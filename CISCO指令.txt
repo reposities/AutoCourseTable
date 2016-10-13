@@ -1,0 +1,86 @@
+查詢VALN
+S1#show vlan brief
+
+查詢trunk
+S1#show interface trunk
+
+VLAN新增且命名
+S1(config)#vlan (新增的數字)
+S1(config-vlan)#name (名字)
+
+設定trunk
+S1(config)#interface (連接埠)
+S1(config-if)#switchport mode trunk
+
+
+將連接埠分配給VLAN
+S1(config)#interface (連接埠)
+S1(config-if)#switchport mode access 
+S1(config-if)#switchport access vlan (數字)
+
+配置原生VLAN
+S1(config)#interface (連接埠)
+S1(config-if)#switchport mode trunk
+S1(config-if)#switch[prt trunk native vlan (數字)
+
+-----------------------------------------------------
+
+變更名稱
+S1(config)#hostname (名稱)
+
+停用DNS查詢
+S1(config)#no ip domain-lookup
+
+開始DNS查詢
+S1(config)#ip domain-lookup 
+
+進入特權區域的密碼 ((從 S1> 變成 S1#
+S1(config)#enable password (密碼)
+
+進入控制台的密碼 ((最一開始
+S1(config)#line console 0
+S1(config-if)#password 密碼
+S1(config-if)#login
+
+VTY密碼
+S1(config)#line vty 0 15  //或是line vty 0 4 看狀況
+S1(config-if)#password 密碼
+S1(config-if)#login
+
+加密密碼
+S1(config)#service password-encryption
+
+保存啟用配置
+S1#copy running-config starup-config
+
+配置預設閘道(deafult getway)
+S1(config)#ip deafult-getway (IP位置)
+
+新增介面(vlan之類的)
+S1(config)# vlan 99
+S1(config-vlan)# name (想要的名稱)
+S1(config-vlan)# exit
+S1(config)#
+
+配置IP給某介面
+S1(config)# interface (介面)
+S1(config-if)# ip address (IP) (子網路遮罩)
+S1(config-if)# no shutdown
+S1(config-if)# end
+S1#
+
+設定SSH連線
+S1(config)#ip domain-name (網址)
+
+產生 RSA 加密金鑰。
+S1(config)# crypto key generate rsa 
+
+創建用戶+密碼
+S1(config)# user (用戶名) password (密碼)
+
+配置 vty 線路的 transport input，以便僅允許 SSH 連接，並使用本地資料庫進行驗證。
+S1(config)# line vty 0 15
+S1(config-line)# login local
+S1(config-line)# transport input ssh
+S1(config-line)# exit
+
